@@ -1,15 +1,21 @@
 const express= require('express');
 const router = express.Router();
 
-const conexion = require('./database/db')
+const conexion = require('./database/db');
+//Mostrar registros
 router.get('/', (req, res)=> {
-    res.render('index');
-/* conexion.query('SELECT * FROM users', (error, results)=>{
+
+conexion.query('SELECT * FROM users', (error, results)=>{
     if(error){
         throw error;
     }else{
-        res.send(results);
+        res.render('index', {results:results});
     }
-}) */
+}) 
 })
+//Ruta para crear registro
+router.get('/create', (req, res)=>{
+    res.render('create');
+})
+
 module.exports = router;
